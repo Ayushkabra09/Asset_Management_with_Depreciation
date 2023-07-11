@@ -4,10 +4,14 @@ from flask_login import UserMixin
 
 class AssetCategory(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(50), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    name = db.Column(db.String(50), nullable=False, unique=True)
+    description = db.Column(db.Text)
+    created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)
 
-    # Add more fields as needed
+    # Define relationships
+    created_by_user = db.relationship('User', backref='created_categories')
 
     # def __repr__(self):
     #     return self.name

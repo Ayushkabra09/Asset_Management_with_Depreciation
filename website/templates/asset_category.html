@@ -1,0 +1,21 @@
+{% extends "base.html" %} {% block title %}Asset Category{% endblock %} {% block content
+%}
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+{% if categories %}
+  {% for category in cotegory %}
+  <li class="list-group-item">
+    {{ note.data }}
+    <button type="button" class="close" onClick="deleteNote({{ note.id }})">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<h2>You have no category</h2>
+{% endif %}
+<!-- Button to open the popup form -->
+<a href="{{ url_for('views.create_asset_category') }}" target="_blank">Create Category</a>
+
+{% endblock %}
