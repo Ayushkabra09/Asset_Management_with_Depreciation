@@ -1,0 +1,27 @@
+<!-- table.html -->
+<table>
+  <thead>
+    <tr>
+      {% for header in headers %}
+      <th>{{ header }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items %}
+    <tr>
+      {% for cell in item[:-1] %}
+      <td>{{ cell }}</td>
+      {% endfor %}
+      <td>
+        {% if show_view_button %}
+        <button onclick="openPopup('{{ item[-1] }}')">
+          {{ show_view_text }}
+        </button>
+        {% endif %}
+      </td>
+      <!-- Add more columns based on your data structure -->
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
