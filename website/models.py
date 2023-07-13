@@ -27,8 +27,10 @@ class Asset(db.Model):
     current_value = db.Column(db.Float, nullable=False)
     location = db.Column(db.String(100), nullable=False)
     assigned_to = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=True)
+    depreciation_rate = db.Column(db.Float, nullable=False)  # New field for depreciation rate
     description = db.Column(db.Text, nullable=True)
     # Add more fields as needed
+    created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow)

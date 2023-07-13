@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      crossorigin="anonymous"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Asset Form</h1>
+      <form method="POST">
+        <div class="form-group">
+            <label for="category">Category:</label>
+            <select class="form-control" id="category" name="category" required>
+              <option value="">Select Category</option>
+              {% for category in categories %}
+              <option value="{{ category.id }}">{{ category.name }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        <div class="form-group">
+          <label for="asset_name">Asset Name:</label>
+          <input type="text" class="form-control" id="asset_name" name="asset_name" required>
+        </div>
+        <div class="form-group">
+          <label for="serial_number">Serial Number:</label>
+          <input type="text" class="form-control" id="serial_number" name="serial_number" required>
+        </div>
+        <div class="form-group">
+          <label for="purchase_date">Purchase Date:</label>
+          <input type="date" class="form-control" id="purchase_date" name="purchase_date" required>
+        </div>
+        <div class="form-group">
+          <label for="purchase_cost">Purchase Cost:</label>
+          <input type="number" class="form-control" id="purchase_cost" name="purchase_cost" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="current_value">Current Value:</label>
+          <input type="number" class="form-control" id="current_value" name="current_value" step="0.01" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location:</label>
+          <input type="text" class="form-control" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+          <label for="assigned_to">Assigned To:</label>
+          <select class="form-control" id="assigned_to" name="assigned_to">
+            <option value="">None</option>
+            {% for user in users %}
+            <option value="{{ user.id }}">{{ user.first_name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+            <label for="depreciation_rate">Depreciation Rate:</label>
+            <input type="number" class="form-control" id="depreciation_rate" name="depreciation_rate" step="0.01" required>
+          </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <textarea class="form-control" id="description" name="description"></textarea>
+        </div>
+        <!-- Add more fields as needed -->
+        <button type="submit" class="btn btn-primary">Create Asset</button>
+      </form>
+      
+    </div>
+  </body>
+</html>
