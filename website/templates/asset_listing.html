@@ -8,7 +8,8 @@
     {% set items = [] %}
 
     {% for asset in assets %}
-    {% set assigned_to = User.query.get(asset.assigned_to).first_name if asset.assigned_to else "None" %}
+    {% set assigned_to = User.query.filter_by(organization_id=organization_id, id=asset.assigned_to).first().first_name
+      if asset.assigned_to else "None" %}
     {% set asset_category = AssetCategory.query.get(asset.category_id).name if asset.category_id else "None" %}
     {% set asset_data = (asset.asset_name,asset_category, asset.serial_number, asset.purchase_date.strftime('%Y-%m-%d'), asset.purchase_cost, asset.current_value, asset.location, assigned_to, asset.description, asset.id) %}
       {% set _ = items.append(asset_data) %}

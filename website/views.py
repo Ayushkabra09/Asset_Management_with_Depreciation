@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
 from .models import AssetCategory, Asset, User
 from . import db
 
 views = Blueprint('views', __name__)
-
+# Retrieve the organization ID from the session
 
 @views.route('/')
 @login_required
@@ -15,7 +15,9 @@ def home():
 @views.route('/assetCategory')
 @login_required
 def asset_category():
-    categories = AssetCategory.query.all()
+    organization_id = session.get('organization_id')
+
+    categories = AssetCategory.query.filter_by(category_organization_id=organization_id).all()
 
     return render_template("asset_category.html", user=current_user, categories=categories)
 
@@ -24,13 +26,15 @@ def asset_category():
 @login_required
 def create_asset_category():
     if (request.method == 'POST'):
+        organization_id = session.get('organization_id')
+
         name = request.form.get('name')
         description = request.form.get('description')
         created_by = current_user.id
 
         # Create a new instance of AssetCategory
         new_category = AssetCategory(
-            name=name, description=description, created_by=created_by)
+            name=name, description=description, created_by=created_by, category_organization_id= organization_id)
 
         # Add the new category to the database
         db.session.add(new_category)
@@ -49,13 +53,17 @@ def create_asset_category():
 @views.route('/assetListing')
 @login_required
 def asset_listing():
-    assets = Asset.query.all()
+    organization_id = session.get('organization_id')
+
+    assets = Asset.query.filter_by(asset_organization_id=organization_id).all()
     return render_template("asset_listing.html", user=current_user, assets=assets, User = User, AssetCategory = AssetCategory)
 
 
 @views.route('/createAsset', methods=['GET', 'POST'])
 @login_required
 def create_asset():
+    organization_id = session.get('organization_id')
+
 
     if (request.method == 'POST'):
         asset_category = request.form.get('category')
@@ -82,7 +90,8 @@ def create_asset():
             assigned_to=assigned_to,
             depreciation_rate = depreciation_rate,
             description=description,
-            created_by=created_by
+            created_by=created_by,
+            asset_organization_id = organization_id
         )
 
         # Add the new asset to the database
@@ -95,7 +104,7 @@ def create_asset():
             window.close();
         </script>
         '''
-    users = User.query.all()
-    categories = AssetCategory.query.all()
+    users = User.query.filter_by(organization_id=organization_id).all()
+    categories = AssetCategory.query.filter_by(category_organization_id=organization_id).all()
 
     return render_template("create_asset.html", users=users, categories=categories, user=current_user)
