@@ -1,0 +1,36 @@
+{% extends "base.html" %} 
+{% block title %}Reports{% endblock %} 
+{% block content %}
+  <h1 align="center">Reports</h1>
+
+  {% if reports %}
+    {% set headers = ("Report Title","Description") %}
+    {% set items = [] %}
+
+    {% for report in reports %}
+    {% set report_data = (report.report_name, report.description, report.id) %}
+    {% set _ = items.append(report_data) %}
+    {% endfor %}
+
+    {% with headers=headers, items=items, show_view_button='true', show_view_text='View' %}
+    {% include 'table.html' %}
+    {% endwith %}
+  {% else %}
+    <h2>You have no Reports</h2>
+  {% endif %}
+  
+  <!-- Button to open the popup form -->
+
+  <script>
+    function openPopup(itemId) {
+      // Perform the necessary logic to open the edit or view popup
+      // You can use the itemId parameter to fetch the relevant data for the popup
+
+      // Example code:
+      // You can use a library like Bootstrap modal or create a custom popup
+      // Here, we're using a simple JavaScript alert for demonstration purposes
+      alert('Open popup for item with ID: ' + itemId);
+    }
+  </script>
+
+{% endblock %}

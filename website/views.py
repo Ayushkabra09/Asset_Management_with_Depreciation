@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, session
 from flask_login import login_required, current_user
-from .models import AssetCategory, Asset, User
+from .models import AssetCategory, Asset, User, Report
 from . import db
 
 views = Blueprint('views', __name__)
@@ -56,7 +56,7 @@ def asset_listing():
     organization_id = session.get('organization_id')
 
     assets = Asset.query.filter_by(asset_organization_id=organization_id).all()
-    return render_template("asset_listing.html", user=current_user, assets=assets, User = User, AssetCategory = AssetCategory)
+    return render_template("asset_listing.html", user=current_user, assets=assets, User = User, AssetCategory = AssetCategory, organization_id = organization_id)
 
 
 @views.route('/createAsset', methods=['GET', 'POST'])
@@ -108,3 +108,12 @@ def create_asset():
     categories = AssetCategory.query.filter_by(category_organization_id=organization_id).all()
 
     return render_template("create_asset.html", users=users, categories=categories, user=current_user)
+
+
+@views.route('/reports')
+@login_required
+def reports():
+    organization_id = session.get('organization_id')
+
+    reports = Report.query.all()
+    return render_template("report_listing.html", user=current_user, reports=reports, User = User)

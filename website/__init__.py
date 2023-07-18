@@ -14,9 +14,11 @@ def create_app():
     
     from .views import views
     from .auth import auth
+    from .report_views import redirect_to_report
 
     app.register_blueprint(views, url_prefix="/")
     app.register_blueprint(auth, url_prefix="/")
+    app.register_blueprint(report_views, url_prefix="/reports")
 
     from .models import User
 
