@@ -16,7 +16,7 @@ def create_app():
         app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://Ayush:hitkar123@localhost/{DB_NAME}'
         app.config['SECRET_KEY'] = 'secret_key'
 
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
    
     db.init_app(app)
     
