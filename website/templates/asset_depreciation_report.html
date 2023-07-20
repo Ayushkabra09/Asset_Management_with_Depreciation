@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Asset Depreciation Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+    .total-row {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Asset Depreciation Report</h1>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>ID</th>
+      <th>Purchase Date</th>
+      <th>Purchase Cost</th>
+      <th>Current Value</th>
+      <th>Depreciation Rate</th>
+      <th>Depreciation Amount</th>
+      <th>Accumulated Depreciation</th>
+      <th>Net Book Value</th>
+    </tr>
+    {% for asset in assets %}
+    <tr>
+      <td>{{ asset.name }}</td>
+      <td>{{ asset.id }}</td>
+      <td>{{ asset.purchase_date }}</td>
+      <td>{{ "%.2f"|format(asset.purchase_cost) }}</td>
+      <td>{{ "%.2f"|format(asset.current_value) }}</td>
+      <td>{{ "%.2f"|format(asset.depreciation_rate) }}</td>
+      <td>{{ "%.2f"|format(asset.depreciation_amount) }}</td>
+      <td>{{ "%.2f"|format(asset.accumulated_depreciation) }}</td>
+      <td>{{ "%.2f"|format(asset.net_book_value) }}</td>
+    </tr>
+    {% endfor %}
+    <tr class="total-row">
+      <td colspan="5">Total Assets: {{ total_assets }}</td>
+      <td colspan="3">Total Depreciation: {{ "%.2f"|format(total_depreciation) }}</td>
+      <td colspan="1">Total Net Book Value: {{ "%.2f"|format(total_net_book_value) }}</td>
+    </tr>
+  </table>
+
+  <script>
+    // You can add any custom JavaScript code here if needed.
+  </script>
+</body>
+</html>

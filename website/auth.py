@@ -18,6 +18,7 @@ def login():
                 
                 organization_id = user.organization_id
                 session['organization_id'] = organization_id
+                session['user_id'] = user.id
 
                 flash('Logged in successfully!', category='success')
                 login_user(user, remember=True)
@@ -97,6 +98,8 @@ def signup():
             new_user = User(email=email, password=generate_password_hash(password1, method='sha256'), first_name=firstName, organization_id=new_organization.id, is_super_admin = is_super_admin)
             db.session.add(new_user)
             db.session.commit()
+             # Set the session data
+            session['user_id'] = new_user.id
             session['organization_id'] = organization_id
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
