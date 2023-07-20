@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from os import path
+import os
 from flask_login import LoginManager
 
 db = SQLAlchemy()
@@ -8,8 +8,14 @@ DB_NAME = "asset_management"
 
 def create_app():
     app = Flask(__name__)
-    app.config['SECRET_KEY'] = "secret_key"
-    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://Ayush:hitkar123@localhost/{DB_NAME}'
+
+    if os.environ.get('FLASK_ENV') == 'production':
+        app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://ayush:I9cCMFxrhSbPTH02LCEbrPGbkbRQmwxJ@dpg-cis94qdph6et1se9s7b0-a/asset_management'
+        app.config['SECRET_KEY'] = 'secret_key'
+    else:
+        app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://Ayush:hitkar123@localhost/{DB_NAME}'
+        app.config['SECRET_KEY'] = 'secret_key'
+        
     db.init_app(app)
     
     from .views import views
