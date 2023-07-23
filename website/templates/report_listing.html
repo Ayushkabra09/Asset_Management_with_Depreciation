@@ -1,7 +1,7 @@
-{% extends "base.html" %} 
-{% block title %}Reports{% endblock %} 
+{% extends "base_admin.html" %} 
+{% block title %}Reports{% endblock %}
+{% block pageHeading %}Reports{% endblock %} 
 {% block content %}
-  <h1 align="center">Reports</h1>
 
   {% if reports %}
     {% set headers = ("Report Title","Description") %}

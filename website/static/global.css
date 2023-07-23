@@ -1,0 +1,43 @@
+body {
+    margin: 0;
+    line-height: normal;
+  }
+  
+  :root {
+    /* fonts */
+    --font-cera-pro: "Cera Pro";
+    --font-poppins: Poppins;
+    --font-jost: Jost;
+    --font-roboto-flex: "Roboto Flex";
+    --font-raleway: Raleway;
+  
+    /* font sizes */
+    --font-size-7xs: 6px;
+    --font-size-6xl: 25px;
+    --font-size-base: 16px;
+    --font-size-smi: 13px;
+  
+    /* Colors */
+    --white-color: #fff;
+    --red: #ff5630;
+    --color-gray-100: #232323;
+    --color-gainsboro: #e4e4e4;
+    --color-darkslategray-100: #333;
+    --color-whitesmoke: #f9fafc;
+    --color-lightgray: #ccc;
+  
+    /* Gaps */
+    --gap-base: 16px;
+  
+    /* Paddings */
+    --padding-xs-2: 11.2px;
+    --padding-14xl-7: 33.7px;
+    --padding-sm: 14px;
+    --padding-mini: 15px;
+  
+    /* border radiuses */
+    --br-25xl: 44px;
+    --br-5xs: 8px;
+    --br-7xs: 6px;
+  }
+  

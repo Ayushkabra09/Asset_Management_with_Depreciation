@@ -1,7 +1,15 @@
-{% extends "base.html" %} 
+{% extends "base_admin.html" %} 
 {% block title %}Asset Category{% endblock %} 
+{% block pageHeading %}Asset Category{% endblock %}
 {% block content %}
-  <h1 align="center">Asset Category</h1>
+  
+
+    <!-- Button to open the popup form -->
+    <div class="button-black" onclick="create_category_pop()">
+      
+       <span class="button-text">+ create category</span>
+      
+    </div>
 
   {% if categories %}
     {% set headers = ("Category", "Description", "Created By") %}
@@ -19,10 +27,13 @@
     <h2>You have no category</h2>
   {% endif %}
   
-  <!-- Button to open the popup form -->
-  <a href="{{ url_for('views.create_asset_category') }}" target="_blank">Create Category</a>
+
 
   <script>
+
+    function create_category_pop(){
+      window.open('{{ url_for('views.create_asset_category') }}', '_blank')
+    }
   function openPopup(itemId) {
     // Perform the necessary logic to open the edit or view popup
     // You can use the itemId parameter to fetch the relevant data for the popup

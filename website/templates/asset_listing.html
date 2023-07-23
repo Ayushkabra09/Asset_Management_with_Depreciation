@@ -1,12 +1,18 @@
-{% extends "base.html" %} 
+{% extends "base_admin.html" %} 
 {% block title %}Assets{% endblock %} 
+{% block pageHeading %}Assets{% endblock %}
 {% block content %}
-  <h1 align="center">Assets</h1>
+  
+<!-- Button to open the popup form -->
+<div class="button-black" onclick="create_category_pop()">
+      
+  <span class="button-text">+ create asset</span>
+ 
+</div>
 
   {% if assets %}
     {% set headers = ("Asset Name","Asset Category", "Serial Number", "Purchase Date", "Purchase Cost", "Current Value", "Location", "Assigned To", "Description") %}
     {% set items = [] %}
-
     {% for asset in assets %}
     {% set assigned_to = User.query.filter_by(organization_id=organization_id, id=asset.assigned_to).first().first_name
       if asset.assigned_to else "None" %}

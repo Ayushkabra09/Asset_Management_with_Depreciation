@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for,
 from flask_login import login_required, current_user
 from .models import AssetCategory, Asset, User, Report
 from . import db
+from .auth import logout
 
 views = Blueprint('views', __name__)
 # Retrieve the organization ID from the session
@@ -54,6 +55,9 @@ def create_asset_category():
 @login_required
 def asset_listing():
     organization_id = session.get('organization_id')
+    print(organization_id)
+    if not organization_id:
+         return logout()
 
     assets = Asset.query.filter_by(asset_organization_id=organization_id).all()
     return render_template("asset_listing.html", user=current_user, assets=assets, User = User, AssetCategory = AssetCategory, organization_id = organization_id)
@@ -117,3 +121,9 @@ def reports():
 
     reports = Report.query.all()
     return render_template("report_listing.html", user=current_user, reports=reports, User = User)
+
+
+@views.route('/sample')
+
+def sammple():
+    return render_template("base_admin.html")
