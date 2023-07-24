@@ -88,14 +88,15 @@ def signup():
                     phone=new_organization_phone,
                     email=new_organization_email
                     )
-
                 # Add the new organization to the database
                 db.session.add(new_organization)
                 db.session.commit()
                 is_super_admin = True
-            
+                new_organization = new_organization.id
+            else:
+                new_organization = organization_id
 
-            new_user = User(email=email, password=generate_password_hash(password1, method='sha256'), first_name=firstName, organization_id=new_organization.id, is_super_admin = is_super_admin)
+            new_user = User(email=email, password=generate_password_hash(password1, method='sha256'), first_name=firstName, organization_id=new_organization, is_super_admin = is_super_admin)
             db.session.add(new_user)
             db.session.commit()
              # Set the session data
@@ -103,5 +104,5 @@ def signup():
             session['organization_id'] = organization_id
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
-
-    return render_template("signup.html", user=current_user, allow_organization_creation = True)
+    organizations = Organization.query.all()
+    return render_template("signup.html", user=current_user,organizations = organizations, allow_organization_creation = True)

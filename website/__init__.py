@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, session, g, render_template
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager
@@ -30,7 +30,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix="/")
     app.register_blueprint(report_view, url_prefix="/report")
 
-    from .models import User
+    from .models import User, Organization
 
     login_manager = LoginManager()
     login_manager.login_view = 'auth.login'
@@ -39,6 +39,17 @@ def create_app():
     @login_manager.user_loader
     def load_user(id):
         return User.query.get(int(id))
+    
+    @app.context_processor
+    def inject_organization_name():
+        if 'organization_id' in session:
+        # Fetch the organization details based on the organization ID from the database
+            organization_id = session['organization_id']
+            organization = Organization.query.get(organization_id)
+            if organization:
+                # Return the organization name as a context variable
+                return {'organization_name': organization.name}
+        return {'organization_name': None}
 
     # create_database(app)
 

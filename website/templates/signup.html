@@ -1,81 +1,165 @@
-{% extends "base.html" %} 
-{% block title %}Sign Up{% endblock %} 
-{% block content %}
-  <form method="POST">
-    <h3 align="center">Sign Up</h3>
+{% extends "base.html" %} {% block title %}Sign Up{% endblock %} {% block
+content %}
+<form method="POST">
+  <h3 align="center">Sign Up</h3>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      placeholder="Enter email"
+    />
+  </div>
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="firstName"
+      name="firstName"
+      placeholder="Enter first name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password1">Password</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password1"
+      name="password1"
+      placeholder="Enter password"
+    />
+  </div>
+  <div class="form-group">
+    <label for="password2">Password (Confirm)</label>
+    <input
+      type="password"
+      class="form-control"
+      id="password2"
+      name="password2"
+      placeholder="Confirm password"
+    />
+  </div>
+  <div class="form-group">
+    <label for="organization">Organization</label>
+    <select class="form-control" id="organization" name="organization">
+      <option value="-1">Please select your organization</option>
+      {% for organization in organizations %}
+      <option value="{{ organization.id }}">{{ organization.name }}</option>
+      {% endfor %}
+      <option value="other">Other (Create New Organization)</option>
+    </select>
+  </div>
+  {% if allow_organization_creation %}
+  <div id="newOrganizationFields" style="display: none">
     <div class="form-group">
-      <label for="email">Email Address</label>
-      <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+      <label for="newOrganizationName">New Organization Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="newOrganizationName"
+        name="newOrganizationName"
+        placeholder="Enter organization name"
+        required
+      />
     </div>
     <div class="form-group">
-      <label for="firstName">First Name</label>
-      <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" />
+      <label for="newOrganizationAddress">Organization Address</label>
+      <input
+        type="text"
+        class="form-control"
+        id="newOrganizationAddress"
+        name="newOrganizationAddress"
+        placeholder="Enter organization address"
+        required
+      />
     </div>
     <div class="form-group">
-      <label for="password1">Password</label>
-      <input type="password" class="form-control" id="password1" name="password1" placeholder="Enter password" />
+      <label for="newOrganizationCity">Organization City</label>
+      <input
+        type="text"
+        class="form-control"
+        id="newOrganizationCity"
+        name="newOrganizationCity"
+        placeholder="Enter organization city"
+        required
+      />
     </div>
     <div class="form-group">
-      <label for="password2">Password (Confirm)</label>
-      <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" />
+      <label for="newOrganizationState">Organization State</label>
+      <input
+        type="text"
+        class="form-control"
+        id="newOrganizationState"
+        name="newOrganizationState"
+        placeholder="Enter organization state"
+        required
+      />
     </div>
     <div class="form-group">
-      <label for="organization">Organization</label>
-      <select class="form-control" id="organization" name="organization">
-        <option value="-1">Please select your organization</option>
-        {% for organization in organizations %}
-        <option value="{{ organization.id }}">{{ organization.name }}</option>
-        {% endfor %}
-        <option value="other">Other (Create New Organization)</option>
-      </select>
+      <label for="newOrganizationCountry">Organization Country</label>
+      <input
+        type="text"
+        class="form-control"
+        id="newOrganizationCountry"
+        name="newOrganizationCountry"
+        placeholder="Enter organization country"
+        required
+      />
     </div>
-    {% if allow_organization_creation %}
-    <div id="newOrganizationFields" style="display: none;">
-      <div class="form-group">
-        <label for="newOrganizationName">New Organization Name</label>
-        <input type="text" class="form-control" id="newOrganizationName" name="newOrganizationName" placeholder="Enter organization name" required />
-      </div>
-      <div class="form-group">
-        <label for="newOrganizationAddress">Organization Address</label>
-        <input type="text" class="form-control" id="newOrganizationAddress" name="newOrganizationAddress" placeholder="Enter organization address" required />
-      </div>
-      <div class="form-group">
-        <label for="newOrganizationCity">Organization City</label>
-        <input type="text" class="form-control" id="newOrganizationCity" name="newOrganizationCity" placeholder="Enter organization city" required />
-      </div>
-      <div class="form-group">
-        <label for="newOrganizationState">Organization State</label>
-        <input type="text" class="form-control" id="newOrganizationState" name="newOrganizationState" placeholder="Enter organization state" required />
-      </div>
-      <div class="form-group">
-        <label for="newOrganizationCountry">Organization Country</label>
-        <input type="text" class="form-control" id="newOrganizationCountry" name="newOrganizationCountry" placeholder="Enter organization country" required />
-      </div>
-      <div class="form-group">
-        <label for="newOrganizationPhone">Organization Phone</label>
-        <input type="text" class="form-control" id="newOrganizationPhone" name="newOrganizationPhone" placeholder="Enter organization phone" required />
-      </div>
-      <div class="form-group">
-        <label for="newOrganizationEmail">Organization Email</label>
-        <input type="email" class="form-control" id="newOrganizationEmail" name="newOrganizationEmail" placeholder="Enter organization email" required />
-      </div>
-      <!-- Add more fields for new organization creation as needed -->
+    <div class="form-group">
+      <label for="newOrganizationPhone">Organization Phone</label>
+      <input
+        type="text"
+        class="form-control"
+        id="newOrganizationPhone"
+        name="newOrganizationPhone"
+        placeholder="Enter organization phone"
+        required
+      />
     </div>
-{% endif %}
+    <div class="form-group">
+      <label for="newOrganizationEmail">Organization Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="newOrganizationEmail"
+        name="newOrganizationEmail"
+        placeholder="Enter organization email"
+        required
+      />
+    </div>
+    <!-- Add more fields for new organization creation as needed -->
+  </div>
+  {% endif %}
 
-    <br />
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <br />
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 
-  <script>
-    document.getElementById('organization').addEventListener('change', function() {
+<script>
+  document
+    .getElementById("organization")
+    .addEventListener("change", function () {
       var selectedOption = this.value;
-      var newOrganizationFields = document.getElementById('newOrganizationFields');
-      if (selectedOption === 'other') {
-        newOrganizationFields.style.display = 'block';
+      var newOrganizationFields = document.getElementById(
+        "newOrganizationFields"
+      );
+      var requiredFields = newOrganizationFields.querySelectorAll("[required]");
+
+      if (selectedOption === "other") {
+        newOrganizationFields.style.display = "block";
+        requiredFields.forEach(function (field) {
+          field.setAttribute("required", "");
+        });
       } else {
-        newOrganizationFields.style.display = 'none';
+        newOrganizationFields.style.display = "none";
+        requiredFields.forEach(function (field) {
+          field.removeAttribute("required");
+        });
       }
     });
-  </script>
+</script>
 {% endblock %}
