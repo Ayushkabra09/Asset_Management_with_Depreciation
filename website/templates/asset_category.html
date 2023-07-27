@@ -5,11 +5,7 @@
   
 
     <!-- Button to open the popup form -->
-    <div class="button-black" onclick="create_category_pop()">
-      
-       <span class="button-text">+ create category</span>
-      
-    </div>
+    <button class="button-black" onclick="create_category_pop()" value="">+ create category</button>
 
   {% if categories %}
     {% set headers = ("Category", "Description", "Created By") %}

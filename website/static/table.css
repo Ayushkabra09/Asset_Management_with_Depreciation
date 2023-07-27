@@ -1,0 +1,67 @@
+.table-sortable th {
+  cursor: pointer;
+
+}
+
+
+.table-sortable .th-sort-asc::after {
+  content: "\25b4";
+}
+
+.table-sortable .th-sort-desc::after {
+  content: "\25be";
+}
+
+.table-sortable .th-sort-asc::after,
+.table-sortable .th-sort-desc::after {
+  margin-left: 5px;
+}
+
+.table-sortable .th-sort-asc,
+.table-sortable .th-sort-desc {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 10px;
+    font-size: 0.9em;
+    min-width: 90%;
+    border-radius:11.48px 11.48px 0px 0px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.content-table thead tr {
+    background-color: #111;
+    color: #ffffff;
+    text-align: left;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.content-table th,
+.content-table td {
+    padding: 12px 15px;
+    word-wrap: break-word;
+}
+
+.content-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.content-table tbody tr:last-of-type {
+    border-bottom: 2px solid #111;
+}
+
+.content-table tbody tr.active-row {
+    font-weight: bold;
+    color: #111;
+}

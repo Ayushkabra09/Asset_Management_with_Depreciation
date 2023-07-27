@@ -15,9 +15,9 @@ body{
 ul, ol {
     list-style-type: none;
 }
-.container{
-  display: flex;
-}
+.container {
+      display: flex;
+    }
 nav{
   position: relative;
   top: 0;
@@ -25,7 +25,7 @@ nav{
   height: 100vh;
   left: 0;
   background: #232323;
-  width: 360px;
+  width: 30%;
   overflow: hidden;
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
@@ -89,6 +89,7 @@ a:hover{
 
 /* Main Section */
 .main{
+  max-width: 75vw;
   position: relative;
   /* padding: 20px; */
   width: 100%;
@@ -114,9 +115,9 @@ a:hover{
   cursor: pointer;
 }
 .main-skills{
-  
+  max-width: 75vw;
   margin-top: 40px;
-  margin-left: 70px;
+  margin-left: 30px;
 }
 .main-skills .card{
   width: 25%;
@@ -219,22 +220,16 @@ a:hover{
 }
 
 .button-black{
+  cursor: pointer;
     width: fit-content;
     height: 45px;
-    background-color: #000;
+    background-color: #94A7B7;
     border-radius: 10px;
     margin-top: 50px;
     margin-bottom: 40px;
-    margin-left: 600px;
+    margin-left: 65% !important;
     align-items: center;
     padding: 8px 25px 12px 35px;
-}
-.button-black-inner-div{
-    display: flex;
-    flex-direction: column;
-}
-
-.button-text{
     color: #FFF;
     font-size: 10px;
     font-style: normal;
@@ -242,6 +237,6 @@ a:hover{
     line-height: normal;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    
 }
+
   

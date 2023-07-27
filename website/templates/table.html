@@ -1,10 +1,14 @@
 <!-- table.html -->
-<table>
+<link rel="stylesheet" href="../static/table.css">
+<table class="table-sortable content-table">
   <thead>
     <tr>
       {% for header in headers %}
       <th>{{ header }}</th>
       {% endfor %}
+      {% if show_view_button %}
+      <th>Action</th>
+      {% endif %}
     </tr>
   </thead>
   <tbody>
@@ -25,3 +29,4 @@
     {% endfor %}
   </tbody>
 </table>
+<script src="../static/tablesort.js"></script>
