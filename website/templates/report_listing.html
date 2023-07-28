@@ -2,13 +2,13 @@
 {% block title %}Reports{% endblock %}
 {% block pageHeading %}Reports{% endblock %} 
 {% block content %}
-
+<br>
   {% if reports %}
     {% set headers = ("Report Title","Description") %}
     {% set items = [] %}
 
     {% for report in reports %}
-    {% set report_data = (report.report_name, report.description, report.id) %}
+    {% set report_data = (report.title, report.description, report.id) %}
     {% set _ = items.append(report_data) %}
     {% endfor %}
 
@@ -23,15 +23,7 @@
 
   <script>
     function openPopup(itemId) {
-      // Perform the necessary logic to open the edit or view popup
-      // You can use the itemId parameter to fetch the relevant data for the popup
-
-      // Example code:
-      // You can use a library like Bootstrap modal or create a custom popup
-      // Here, we're using a simple JavaScript alert for demonstration purposes
-
-
-      alert('Open popup for item with ID: ' + itemId);
+  
       window.open("/report/" + itemId, "_blank");
     }
   </script>

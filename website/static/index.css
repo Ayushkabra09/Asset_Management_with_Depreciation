@@ -17,16 +17,19 @@ ul, ol {
 }
 .container {
       display: flex;
+      column-gap: normal;
+      gap: 10px;
     }
 nav{
-  position: relative;
+  position: sticky;
   top: 0;
   bottom: 0;
+  margin-right: 20;
   height: 100vh;
   left: 0;
   background: #232323;
-  width: 30%;
-  overflow: hidden;
+  width: 15%;
+  /* overflow: hidden; */
   box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
 }
 .logo{
@@ -89,7 +92,7 @@ a:hover{
 
 /* Main Section */
 .main{
-  max-width: 75vw;
+  /* max-width: 80vw; */
   position: relative;
   /* padding: 20px; */
   width: 100%;
@@ -117,7 +120,7 @@ a:hover{
 .main-skills{
   max-width: 75vw;
   margin-top: 40px;
-  margin-left: 30px;
+  margin-left: 50px;
 }
 .main-skills .card{
   width: 25%;
@@ -227,7 +230,7 @@ a:hover{
     border-radius: 10px;
     margin-top: 50px;
     margin-bottom: 40px;
-    margin-left: 65% !important;
+    margin-left: 75% !important;
     align-items: center;
     padding: 8px 25px 12px 35px;
     color: #FFF;
@@ -239,4 +242,18 @@ a:hover{
     text-transform: uppercase;
 }
 
+.popup-form{
+  display: none;
+  width: 841px;
+  height: 612px;
+  border-radius: 26.955px;
+  border: 1.348px solid #E4E4E4;
+  background: #FFF;
+  margin-top: auto;
+  margin-left: auto;
+}
+
+.popup-heading{
+
+}
   

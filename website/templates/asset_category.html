@@ -1,35 +1,33 @@
-{% extends "base_admin.html" %} 
-{% block title %}Asset Category{% endblock %} 
-{% block pageHeading %}Asset Category{% endblock %}
-{% block content %}
-  
+{% extends "base_admin.html" %} {% block title %}Asset Category{% endblock %} {%
+block pageHeading %}Asset Category{% endblock %} {% block content %}
 
-    <!-- Button to open the popup form -->
-    <button class="button-black" onclick="create_category_pop()" value="">+ create category</button>
+<!-- Button to open the popup form -->
+<button class="button-black" onclick="openCreateCategoryPopup('{{ url_for('views.create_asset_category') }}')" value="">
+  + create category
+</button>
 
-  {% if categories %}
-    {% set headers = ("Category", "Description", "Created By") %}
-    {% set items = [] %}
-
-    {% for category in categories %}
-      {% set category_data  = (category.name, category.description, category.created_by_user.first_name, category.id) %}
-      {% set _ = items.append(category_data) %}
-    {% endfor %}
-
-    {% with headers=headers, items=items, show_view_button='true', show_view_text = "Edit"  %}
-    {% include 'table.html' %}
-  {% endwith %}
-  {% else %}
-    <h2>You have no category</h2>
-  {% endif %}
-  
+{% if categories %} {% set headers = ("Category", "Description", "Created By")
+%} {% set items = [] %} {% for category in categories %} {% set category_data =
+(category.name, category.description, category.created_by_user.first_name,
+category.id) %} {% set _ = items.append(category_data) %} {% endfor %} {% with
+headers=headers, items=items, show_view_button='true', show_view_text = "Edit"
+%} {% include 'table.html' %} {% endwith %} {% else %}
+<h2>You have no category</h2>
+{% endif %}
 
 
-  <script>
+<script>
+  // function openCreateCategoryPopup() {
+  //     document.getElementById('popupForm').style.display = 'block';
+  //   }
 
-    function create_category_pop(){
-      window.open('{{ url_for('views.create_asset_category') }}', '_blank')
-    }
+  //   function closeCreateCategoryPopup() {
+  //     document.getElementById('popupForm').style.display = 'none';
+  //   }
+
+  function openCreateCategoryPopup(url) {
+    window.open(url, "_blank", "height=400,width=400");
+  }
   function openPopup(itemId) {
     // Perform the necessary logic to open the edit or view popup
     // You can use the itemId parameter to fetch the relevant data for the popup
@@ -37,7 +35,7 @@
     // Example code:
     // You can use a library like Bootstrap modal or create a custom popup
     // Here, we're using a simple JavaScript alert for demonstration purposes
-    alert('Open popup for item with ID: ' + itemId);
+    alert("Open popup for item with ID: " + itemId);
   }
 </script>
 

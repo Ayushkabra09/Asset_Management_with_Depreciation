@@ -1,6 +1,7 @@
 from flask import redirect, url_for, Blueprint, render_template, session
 from datetime import datetime, date
 from .models import Asset
+from . import cache 
 
 report_view = Blueprint('report_view', __name__)
 
@@ -13,7 +14,7 @@ def redirect_to_report(report_id):
     else:
         return redirect(url_for('report'))
     
-
+@cache.cached(timeout=3600, key_prefix='depreciation_report')
 @report_view.route('/depreciation_report')
 def depreciation_report():
     # Get all assets from the database

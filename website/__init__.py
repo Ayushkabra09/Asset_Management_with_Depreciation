@@ -1,4 +1,6 @@
 from flask import Flask, session, g, render_template
+from flask_caching import Cache
+import redis
 from flask_sqlalchemy import SQLAlchemy
 import os
 from flask_login import LoginManager
@@ -18,7 +20,11 @@ def create_app():
         app.config['SECRET_KEY'] = 'secret_key'
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-   
+    app.config['CACHE_TYPE'] = 'redis'
+    app.config['CACHE_REDIS_URL'] = 'redis://localhost:6379/0'
+
+    cache = Cache(app)
+
     db.init_app(app)
     migrate = Migrate(app, db)
     

@@ -19,7 +19,7 @@
       {% endfor %}
       <td>
         {% if show_view_button %}
-        <button onclick="openPopup('{{ item[-1] }}')">
+        <button class="table-button" onclick="openPopup('{{ item[-1] }}')">
           {{ show_view_text }}
         </button>
         {% endif %}
