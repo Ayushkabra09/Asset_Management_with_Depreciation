@@ -8,7 +8,7 @@ from flask_migrate import Migrate
 
 db = SQLAlchemy()
 DB_NAME = "asset_management"
-
+cache = Cache()
 def create_app():
     app = Flask(__name__)
 
@@ -23,11 +23,11 @@ def create_app():
     app.config['CACHE_TYPE'] = 'redis'
     app.config['CACHE_REDIS_URL'] = 'redis://localhost:6379/0'
 
-    cache = Cache(app)
+    
 
     db.init_app(app)
     migrate = Migrate(app, db)
-    
+    cache.init_app(app)
     from .views import views
     from .auth import auth
     from .report_views import report_view
